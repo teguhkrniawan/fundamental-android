@@ -5,6 +5,10 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 29
 
+    dataBinding{
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "com.teguh.aboutme"
         minSdkVersion 21
