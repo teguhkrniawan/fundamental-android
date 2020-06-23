@@ -14,13 +14,14 @@ class MainActivity : AppCompatActivity() {
     // deklarasi variabel untuk data binding
     private lateinit var binding : ActivityMainBinding
 
+    // deklarasi objek
+    private val myName: MyName = MyName("Teguh Kurniawan")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-
-        // sintkas diatas diganti karena kalau make databinding, sintaksnya yg dibawah ini
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        binding.myName = myName // lakukan binding terhadap ojek data
 
         // ketika done button diklik
         binding.doneButton.setOnClickListener() {
@@ -38,11 +39,17 @@ class MainActivity : AppCompatActivity() {
     // function button done click
     private fun addNickName(view: View) {
 
-        binding.nicknameTextview.text = binding.nicknameEdit.text.toString() // mengambil nilai edittext ke textview
+        //binding.nicknameTextview.text = binding.nicknameEdit.text.toString() // mengambil nilai edittext ke textview
 
-        binding.nicknameEdit.visibility = View.GONE
-        binding.doneButton.visibility = View.GONE // menghilangkan button done, karena nilai view adalah doneButton
-        binding.nicknameTextview.visibility = View.VISIBLE
+       binding.apply {
+
+           myName?.nickname = binding.nicknameEdit.text.toString()
+           invalidateAll()
+
+           binding.nicknameEdit.visibility = View.GONE
+           binding.doneButton.visibility = View.GONE // menghilangkan button done, karena nilai view adalah doneButton
+           binding.nicknameTextview.visibility = View.VISIBLE
+       }
 
         // meng-hide keyboard setelah proses diatas selesai
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

@@ -2,6 +2,13 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="myName"
+            type="com.teguh.aboutme.MyName" />
+    </data>
+
         <LinearLayout
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
@@ -16,7 +23,7 @@
                 style="@style/DefaultStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/name"
+                android:text="@={myName.name}"
                 android:textAlignment="center" />
 
             <EditText
@@ -32,7 +39,7 @@
                 android:id="@+id/nickname_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="@={myName.nickname}"
                 android:visibility="gone"
                 android:textAlignment="center"
                 android:background="@color/colorAccent"
